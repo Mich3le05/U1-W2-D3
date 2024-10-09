@@ -243,5 +243,6 @@ for (let i = 0; i < starWarsCharacters.length; i++) {
 let randomIndex = Math.floor(Math.random() * starWarsCharacters.length)
 let randomCharacter = starWarsCharacters[randomIndex]
 
-console.log('Elemento casuale')
 console.log('Nome:', randomCharacter.name)
+console.log('Height:', randomCharacter.height)
+// così per tutte le altre proprietà
