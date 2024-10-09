@@ -114,10 +114,11 @@ let charactersNames = []
   */
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
+  // questa riga verrà eseguita 10 volte, ognuna con una i diversa (e quindi con un personaggio stastarWarsCharacters[i] diverso)
   charactersNames.push(starWarsCharacters[i].name)
 }
 
-console.log(charactersNames)
+console.log('charactersNames', charactersNames)
 
 /* ESERCIZIO 3
     Seguendo i passaggi precedenti crea un nuovo array chiamato "femaleCharacters" e inserisci al suo interno tutti gli oggetti femminili.
@@ -126,12 +127,14 @@ console.log(charactersNames)
 const femaleCharacters = []
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
+  // qui dentro entro per ogni oggetto
   if (starWarsCharacters[i].gender === 'female') {
+    // qui dentro entro solo negli oggetti femminili
     femaleCharacters.push(starWarsCharacters[i])
   }
 }
 
-console.log(femaleCharacters)
+console.log('femaleCharacters', femaleCharacters)
 
 /* ESERCIZIO 4
     Crea un oggetto "eyeColor" che abbia le seguenti proprietà: blue, yellow, brown, red, blue-gray.
@@ -179,11 +182,15 @@ for (let i = 0; i < starWarsCharacters.length; i++) {
       break
 
     default:
-      console.log('colore degli occhi', starWarsCharacters[i].eye_color)
+      console.log(
+        'Il personaggio di nome' +
+          starWarsCharacters[i].name +
+          ' ha un colore di occhi non riconosciuto'
+      )
   }
 }
 
-console.log(eyeColor)
+console.log('eyeColor', eyeColor)
 
 /* ESERCIZIO 6
     Usa un while loop per calcolare la massa totale dell'equipaggio. Salvala in una variabile chiamata "crewMass".
@@ -192,7 +199,7 @@ console.log(eyeColor)
 let crewMass = 0
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
-  crewMass += starWarsCharacters[i].mass
+  crewMass = crewMass + starWarsCharacters[i].mass
 }
 
 console.log("La massa totale dell'equipaggio è", crewMass)
@@ -226,23 +233,33 @@ if (crewMass < 500) {
   */
 
 for (let i = 0; i < starWarsCharacters.length; i++) {
+  // per ogni personaggio
   if (starWarsCharacters[i].gender === 'n/a') {
+    // abbiamo trovato un robot! Riassegniamo la proprietà
     starWarsCharacters[i].gender = 'robot'
   }
 }
+
+console.log('starWarsCharacters modificato', starWarsCharacters)
 
 /* --EXTRA-- ESERCIZIO 9
     Utilizzando gli elementi presenti nell'array "femaleCharacters" rimuovi dall'array "charactersNames" le stringhe corrispondenti a personaggi con lo stesso nome.
     Una volta fatto crea un console.log per controllare la proprietà length di "charactersNames" prima e dopo l'operazione.
   */
 
+for (let i = 0; i < femaleCharacters.length; i++) {
+  // femaleCharacters[i] è uno dei personaggi femminili (ce ne sono due)
+  for (let j = 0; j < charactersNames.length; j++) {
+    if (femaleCharacters[i].name === charactersNames[j]) {
+      // abbiamo trovato il corrispondente nell'array characterNames
+      // eliminiamo l'elemento trovato dall'array characterNames
+      charactersNames.splice(j, 1)
+    }
+  }
+}
+
+console.log('charactersNames dopo', charactersNames)
+
 /* --EXTRA-- ESERCIZIO 10
     Crea una funzionalità che selezioni un elemento casuale dall'array "starWarsCharacters" e ne stampi in console le proprietà in modo discorsivo (a tuo piacimento).
   */
-
-let randomIndex = Math.floor(Math.random() * starWarsCharacters.length)
-let randomCharacter = starWarsCharacters[randomIndex]
-
-console.log('Nome:', randomCharacter.name)
-console.log('Height:', randomCharacter.height)
-// così per tutte le altre proprietà
